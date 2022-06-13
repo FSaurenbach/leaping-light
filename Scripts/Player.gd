@@ -2,37 +2,16 @@ extends KinematicBody2D
 
 var clicked = false
 var invincible = false
-onready var Player = get_parent().get_node("Player")
-export (int) var speed = 5
-var is_in_middle_row = false
-var is_in_right_row = false
-var is_in_left_row = false
-func _ready():
-	pass
+
+
 
 func _input(_event):
 	if Input.is_action_just_released("light_leap"):
 		clicked = true
-	if Input.is_action_just_pressed("d"):
-		if (is_in_right_row == false):
-			Player.position.x +=150
-			
-		
-	if Input.is_action_just_pressed("a"):
-		if (is_in_left_row == false):
-			Player.position.x -=150
 
 
 func _physics_process(delta):
-	
-	get_parent().get_node("SlidingBackground").position.y += speed*delta
-	
-	
-		
-	
-	
 	if clicked:
-		return
 		# Save new position
 		var new_pos = get_viewport().get_mouse_position()
 		
@@ -51,7 +30,7 @@ func _physics_process(delta):
 				if !invincible: 
 					print("Game over!")
 					clicked = false
-					return
+					get_tree().quit()
 				else:
 					print("Lost invincibility")
 					invincible = false
@@ -60,37 +39,3 @@ func _physics_process(delta):
 		# Move Player to clicked position
 		transform.origin = new_pos
 		clicked = false
-
-
-func _on_RowLeft_body_entered(body):
-	if body.is_in_group("Player"):
-		is_in_left_row = true
-		is_in_right_row = false
-		is_in_middle_row = false
-		print("Body in left row")
-		var row = get_parent().get_node("RowLeft")
-		var newPos = row.position.x
-		body.position.x = newPos
-
-
-func _on_RowRight_body_entered(body):
-	if body.is_in_group("Player"):
-		is_in_left_row = false
-		is_in_right_row = true
-		is_in_middle_row = false
-		print("Body in right row")
-		var row = get_parent().get_node("RowRight")
-		var newPos = row.position.x
-		body.position.x = newPos
-
-
-func _on_RowMiddle_body_entered(body):
-	if body.is_in_group("Player"):
-		is_in_left_row = false
-		is_in_right_row = false
-		is_in_middle_row = true
-		print("Body in middle row")
-		var row = get_parent().get_node("RowMiddle")
-		var newPos = row.position.x
-		body.position.x = newPos
-		
