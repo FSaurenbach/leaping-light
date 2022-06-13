@@ -3,7 +3,7 @@ extends KinematicBody2D
 var clicked = false
 var invincible = false
 onready var Player = get_parent().get_node("Player")
-var speed = 5
+export (int) var speed = 5
 var is_in_middle_row = false
 var is_in_right_row = false
 var is_in_left_row = false
@@ -25,8 +25,8 @@ func _input(_event):
 
 func _physics_process(delta):
 	
-	get_parent().get_node("SlidingBackground").position.y += speed
-	get_parent().get_node("ParalaxBackground").position.y += speed*0.4
+	get_parent().get_node("SlidingBackground").position.y += speed*delta
+	
 	
 		
 	
