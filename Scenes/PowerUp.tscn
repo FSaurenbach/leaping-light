@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/PowerUp.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 86.093
+
+[node name="Coin" type="KinematicBody2D"]
+
+[node name="CoinCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0.250008, 0.25 )
+shape = SubResource( 1 )
+
+[node name="CoinSprite" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
