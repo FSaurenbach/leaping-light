@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Projekt_35_-_12.06.22_11.50.ogg-f635aa7e3d906a497207b280ef009928.oggstr"
+
+[deps]
+
+source_file="res://Projekt_35_-_12.06.22_11.50.ogg"
+dest_files=[ "res://.import/Projekt_35_-_12.06.22_11.50.ogg-f635aa7e3d906a497207b280ef009928.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

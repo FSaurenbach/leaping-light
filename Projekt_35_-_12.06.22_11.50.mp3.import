@@ -1,0 +1,13 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+valid=false
+
+[deps]
+
+source_file="res://Projekt_35_-_12.06.22_11.50.mp3"
+[params]
+
+loop=true
+loop_offset=0

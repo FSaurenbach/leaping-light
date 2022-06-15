@@ -6,9 +6,9 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	var error = get_tree().change_scene("res://Scenes/Game.tscn")
+	var error = get_tree().change_scene("res://Scenes/TitleScreen.tscn")
 	if error != OK:
-		push_error("Error whilst loading Game scene")
+		push_error("Error whilst loading tile screen")
 
 
 func _on_SettingsButton_pressed():
