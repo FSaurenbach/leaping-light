@@ -1,12 +1,10 @@
 extends Node
-
-
 func _ready():
 	pass
 
 
 func _on_StartButton_pressed():
-	var error = get_tree().change_scene("res://Scenes/TitleScreen.tscn")
+	var error = get_tree().change_scene("res://Scenes/Level 1.tscn")
 	if error != OK:
 		push_error("Error whilst loading tile screen")
 
@@ -17,3 +15,4 @@ func _on_SettingsButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+	
