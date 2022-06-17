@@ -1,20 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Textures/DefaultTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Projekt_35_-_12.06.22_11.50.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Textures/light_blue.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=3]
 size = 90
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 50
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 27
 font_data = ExtResource( 2 )
 
 [sub_resource type="Environment" id=1]
@@ -29,7 +22,7 @@ colors = PoolColorArray( 0.0627451, 0.0627451, 0.0627451, 1, 0.226563, 0.226563,
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 4 )
 
-[node name="TitleScreen" type="Node"]
+[node name="Shop" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Header" type="Label" parent="."]
@@ -45,40 +38,6 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 3 )
 text = "leaping light"
 align = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-anchor_left = 0.09
-anchor_top = 0.937
-anchor_right = 1.0
-anchor_bottom = 0.937
-margin_left = 0.199997
-margin_top = -112.488
-margin_right = -450.0
-margin_bottom = 0.511963
-
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-margin_right = 205.0
-margin_bottom = 69.0
-mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 5 )
-text = "PLAY"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
-margin_top = 73.0
-margin_right = 205.0
-margin_bottom = 113.0
-custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "OPTIONS"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -112,21 +71,33 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Button" type="Button" parent="VBoxContainer2"]
-margin_right = 150.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 150, 150 )
-hint_tooltip = "Level 1"
+[node name="BluePlayer" type="Button" parent="VBoxContainer2"]
+margin_right = 300.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+hint_tooltip = "Red Player"
 theme = ExtResource( 3 )
-text = "Level 1"
 flat = true
 clip_text = true
+align = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2/BluePlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -111.0
+margin_right = 111.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+text = "Blue Player"
+
+[node name="Light" type="Sprite" parent="VBoxContainer2/BluePlayer"]
+position = Vector2( 139, 154 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = 24.0
+autoplay = true
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="button_up" from="VBoxContainer2/Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="VBoxContainer2/BluePlayer" to="." method="_on_BluePlayer_button_up"]

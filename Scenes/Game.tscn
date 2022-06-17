@@ -1,22 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Obstacle2_Rocket.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Obstacle1_Meteor1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Textures/light.png" type="Texture" id=5]
 [ext_resource path="res://Textures/nightskycolor.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/ParallaxBackground.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Revive.tscn" type="PackedScene" id=8]
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 45.0
-
-[sub_resource type="Environment" id=13]
-background_mode = 4
-glow_enabled = true
-glow_intensity = 0.3
-glow_blend_mode = 0
 
 [node name="Game" type="Node2D"]
 
@@ -29,35 +19,7 @@ motion_mirroring = Vector2( 2048, 2048 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 6 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
-z_index = 2
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 3 )
-
-[node name="Light" type="Sprite" parent="Player"]
-modulate = Color( 2, 2, 2, 1 )
-position = Vector2( 0, 5.72205e-06 )
-scale = Vector2( 0.0853333, 0.0853333 )
-texture = ExtResource( 5 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Player"]
-enabled = true
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-limit_left = 0
-limit_top = -90000
-limit_right = 800
-limit_bottom = 500
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 1.0
-
-[node name="Glow" type="WorldEnvironment" parent="Player"]
-environment = SubResource( 13 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="ScrollingBackground" type="Node2D" parent="."]
 position = Vector2( 331, 739 )

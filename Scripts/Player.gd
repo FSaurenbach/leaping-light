@@ -3,11 +3,18 @@ extends KinematicBody2D
 var clicked = false
 var invincible = false
 func _ready():
+	if Game.skin == "white":
+		$Light.set_texture(Game.light_white)
+	if Game.skin == "blue":
+		$Light.set_texture(Game.light_blue)
+	
 	Game.playable = true
 	
 func _input(_event):
 	if Input.is_action_just_released("light_leap") and Game.playable:
 		clicked = true
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 
 func _physics_process(delta):
