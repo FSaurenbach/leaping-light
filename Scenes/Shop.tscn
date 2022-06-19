@@ -1,10 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Textures/DefaultTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Projekt_35_-_12.06.22_11.50.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Textures/light_blue.png" type="Texture" id=5]
+[ext_resource path="res://Textures/nightskycolor.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=4]
+code = "
+shader_type canvas_item;
+	
+uniform vec2 Resolution;
+	
+	void fragment()
+{
+	vec2 uv = FRAGCOORD.xy / Resolution.xy;
+	
+	float lod = (5.0 + 5.0*sin( TIME)) + step( uv.x, 5.0 );
+	
+	vec3 col = texture( TEXTURE, vec2(uv.x,1.0-uv.y), lod ).xyz;
+	
+	COLOR = vec4( col, 1.0 );
+	}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/Resolution = Vector2( 2024, 2024 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 90
@@ -16,62 +38,48 @@ glow_enabled = true
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
 
-[sub_resource type="Gradient" id=4]
-colors = PoolColorArray( 0.0627451, 0.0627451, 0.0627451, 1, 0.226563, 0.226563, 0.226563, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 4 )
-
-[node name="Shop" type="Node"]
+[node name="Shop" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="Nightskycolor" type="Sprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( 840, 928 )
+rotation = 6.28319
+texture = ExtResource( 6 )
+
 [node name="Header" type="Label" parent="."]
-anchor_top = 0.049
-anchor_right = 0.889
-anchor_bottom = 0.049
-margin_left = 65.0
-margin_top = -0.176003
-margin_right = -0.0800171
-margin_bottom = 124.824
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 215.0
+margin_right = 455.0
+margin_bottom = 125.0
 rect_pivot_offset = Vector2( 1194, 844 )
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 3 )
-text = "leaping light"
+text = "SHOP"
 align = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1116, 660 )
-scale = Vector2( 1.08984, 1320 )
-z_index = -1
-texture = SubResource( 2 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 3.0
+autoplay = true
 
-[node name="Copyright" type="Label" parent="."]
-anchor_top = 0.049
-anchor_right = 0.889
-anchor_bottom = 0.049
-margin_left = -530.8
-margin_top = 340.324
-margin_right = 186.12
-margin_bottom = 465.324
-rect_scale = Vector2( 0.3, 0.3 )
-rect_pivot_offset = Vector2( 1194, 844 )
-custom_fonts/font = SubResource( 3 )
-text = "Copyright(c) Maxed Vision 2022"
-align = 1
+[node name="Skins" type="Node2D" parent="."]
+position = Vector2( 32, 320 )
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VBoxContainer2" type="HBoxContainer" parent="Skins"]
 margin_left = 29.0
 margin_top = 286.0
-margin_right = 179.0
-margin_bottom = 436.0
+margin_right = 633.0
+margin_bottom = 586.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="BluePlayer" type="Button" parent="VBoxContainer2"]
+[node name="BluePlayer" type="Button" parent="Skins/VBoxContainer2"]
 margin_right = 300.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
@@ -81,23 +89,112 @@ flat = true
 clip_text = true
 align = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2/BluePlayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Skins/VBoxContainer2/BluePlayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -111.0
 margin_right = 111.0
 margin_bottom = 56.0
 theme = ExtResource( 3 )
-text = "Blue Player"
+text = "Blue"
 
-[node name="Light" type="Sprite" parent="VBoxContainer2/BluePlayer"]
+[node name="Light" type="Sprite" parent="Skins/VBoxContainer2/BluePlayer"]
 position = Vector2( 139, 154 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = 24.0
-autoplay = true
+[node name="RichTextLabel2" type="RichTextLabel" parent="Skins/VBoxContainer2/BluePlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -111.0
+margin_top = 264.0
+margin_right = 111.0
+margin_bottom = 320.0
+theme = ExtResource( 3 )
+text = "100 COINS"
 
-[connection signal="button_up" from="VBoxContainer2/BluePlayer" to="." method="_on_BluePlayer_button_up"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Skins/VBoxContainer2/BluePlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -111.0
+margin_top = 306.0
+margin_right = 111.0
+margin_bottom = 362.0
+theme = ExtResource( 3 )
+text = "1€"
+
+[node name="RedPlayer" type="Button" parent="Skins/VBoxContainer2"]
+margin_left = 304.0
+margin_right = 604.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+hint_tooltip = "Red Player"
+theme = ExtResource( 3 )
+flat = true
+clip_text = true
+align = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Skins/VBoxContainer2/RedPlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -111.0
+margin_right = 111.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+text = "Red"
+
+[node name="Light" type="Sprite" parent="Skins/VBoxContainer2/RedPlayer"]
+position = Vector2( 139, 154 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Skins/VBoxContainer2/RedPlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -118.0
+margin_top = 264.0
+margin_right = 104.0
+margin_bottom = 320.0
+theme = ExtResource( 3 )
+text = "100 COINS"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="Skins/VBoxContainer2/RedPlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -118.0
+margin_top = 306.0
+margin_right = 104.0
+margin_bottom = 362.0
+theme = ExtResource( 3 )
+text = "1€"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Skins"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 224.0
+margin_top = 185.0
+margin_right = 344.0
+margin_bottom = 241.0
+rect_scale = Vector2( 1.4, 1.4 )
+theme = ExtResource( 3 )
+text = "SKINS"
+
+[node name="SpecialOffer" type="Node2D" parent="."]
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="SpecialOffer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 152.0
+margin_top = 184.0
+margin_right = 403.0
+margin_bottom = 240.0
+rect_scale = Vector2( 1.4, 1.4 )
+theme = ExtResource( 3 )
+text = "Special offer"
+
+[connection signal="button_up" from="Skins/VBoxContainer2/BluePlayer" to="." method="_on_BluePlayer_button_up"]
+[connection signal="button_up" from="Skins/VBoxContainer2/RedPlayer" to="." method="_on_BluePlayer_button_up"]

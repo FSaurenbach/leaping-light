@@ -16,10 +16,17 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
-
+func _process(delta):
+	var limit_bottom = $Camera2D.limit_bottom
+	Game.limit_bottom = limit_bottom
+	Game.limit_top = position[1]-2300
+	
 func _physics_process(delta):
 
-	
+	if (position.y > 550):
+			get_tree().change_scene("res://Scenes/GameOver.tscn")
+			
+			
 	
 	
 	if clicked and Game.playable:
@@ -31,6 +38,7 @@ func _physics_process(delta):
 		
 		# Check if ray hits anything
 		if ray:
+			print(ray.collider)
 			# Give player invincibility tag when coin is collected
 			if "PowerUp" in str(ray.collider):
 				print("Ba-ding!")
@@ -40,17 +48,25 @@ func _physics_process(delta):
 				if !invincible: 
 					print("Game over!")
 					clicked = false
-					Game.playable = false
-					Game.playable = false
-					$Camera2D.current = false
-					hide()
-					get_parent().get_node("Revive").show()
-					get_parent().get_node("Revive/Camera2D").current = true
-					get_parent().get_node("Revive/AnimationPlayer").play("heart")
+					_player_died()
 									
 				else:
 					print("Lost invincibility")
 					invincible = false
+					
+					
+		var diff = new_pos -position
+		
+		$Camera2D.limit_bottom += diff[1]*0.65
+		if position[1] >= $Camera2D.limit_bottom:
+			get_tree().change_scene("res://Scenes/GameOver.tscn")
 		# Move Player to clicked position
 		position = new_pos
 		clicked = false
+func _player_died():
+	Game.playable = false
+	$Camera2D.current = false
+	hide()
+	get_parent().get_node("Revive").show()
+	get_parent().get_node("Revive/Camera2D").current = true
+	get_parent().get_node("Revive/AnimationPlayer").play("heart")
