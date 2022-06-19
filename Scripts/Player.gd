@@ -15,18 +15,16 @@ func _input(_event):
 		clicked = true
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
-
+	#if _event is InputEventScreenTouch and _event.pressed == true:
+	#	(_event.position)
 func _process(delta):
 	var limit_bottom = $Camera2D.limit_bottom
 	Game.limit_bottom = limit_bottom
-	Game.limit_top = position[1]-2300
+	Game.limit_top = position[1]-5000
 	
 func _physics_process(delta):
 
-	if (position.y > 550):
-			get_tree().change_scene("res://Scenes/GameOver.tscn")
-			
-			
+	
 	
 	
 	if clicked and Game.playable:
@@ -38,13 +36,12 @@ func _physics_process(delta):
 		
 		# Check if ray hits anything
 		if ray:
-			print(ray.collider)
 			# Give player invincibility tag when coin is collected
 			if "PowerUp" in str(ray.collider):
 				print("Ba-ding!")
 				invincible = true
 			# Check for invincibility when hit by obstacle
-			if "Obstacle" in str(ray.collider):
+			if (("Obstacle" in str(ray.collider)) ||("rocket" in str(ray.collider)) ) :
 				if !invincible: 
 					print("Game over!")
 					clicked = false
@@ -54,7 +51,10 @@ func _physics_process(delta):
 					print("Lost invincibility")
 					invincible = false
 					
-					
+		else:
+			if ray:
+				if !("Scrolling" in str(ray.collider)):
+					print_debug(ray.collider)
 		var diff = new_pos -position
 		
 		$Camera2D.limit_bottom += diff[1]*0.65

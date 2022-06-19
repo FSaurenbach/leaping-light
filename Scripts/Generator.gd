@@ -3,11 +3,12 @@ var rocket_resource = preload("res://Scenes/Obstacle2_Rocket.tscn")
 var meteor_resource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
 var timer = Timer.new()
 var rng = RandomNumberGenerator.new()
+export (float) var wait_time = 0.1
 var i = 0
 func _ready():
 	timer.connect("timeout",self,"do_this")
 	
-	timer.wait_time = 0.1
+	timer.wait_time = wait_time
 	timer.one_shot = false
 	
 	add_child(timer)
@@ -33,7 +34,6 @@ func do_this():
 	rocket.set_position(Vector2(new_position_x,new_position_y)) # use set_translation() if you are in 3D
 	rocket.set_name("rocket "+ str(i))
 	i+=1
-	print(get_parent().get_node("ScrollingBackground"))
 	get_parent().get_node("ScrollingBackground").add_child(rocket) # parent could be whatever node in the scene that you want the car to be child of
 	_start_timer()
 	

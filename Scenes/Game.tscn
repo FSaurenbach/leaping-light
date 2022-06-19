@@ -28,6 +28,7 @@ position = Vector2( 331, -19 )
 [node name="ScrollingBackground" type="Node2D" parent="."]
 position = Vector2( 331, 739 )
 script = ExtResource( 9 )
+wait_time = 0.3
 
 [node name="Obstacle2_Rocket" parent="ScrollingBackground" instance=ExtResource( 3 )]
 position = Vector2( -168, -892 )

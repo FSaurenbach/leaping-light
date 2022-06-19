@@ -20,3 +20,7 @@ func _ready():
 
 func _on_BluePlayer_button_up():
 	Game.skin = "blue"
+
+
+func _on_BackButton_button_up():
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
