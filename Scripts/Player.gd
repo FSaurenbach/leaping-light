@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var clicked = false
 var invincible = false
+var vero = false
 func _ready():
 	if Game.skin == "white":
 		$Light.set_texture(Game.light_white)
@@ -15,8 +16,8 @@ func _input(_event):
 		clicked = true
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
-	#if _event is InputEventScreenTouch and _event.pressed == true:
-	#	(_event.position)
+	
+	
 func _process(delta):
 	var limit_bottom = $Camera2D.limit_bottom
 	Game.limit_bottom = limit_bottom
@@ -42,14 +43,17 @@ func _physics_process(delta):
 				invincible = true
 			# Check for invincibility when hit by obstacle
 			if (("Obstacle" in str(ray.collider)) ||("rocket" in str(ray.collider)) ) :
-				if !invincible: 
+				if !invincible and vero ==false: 
 					print("Game over!")
 					clicked = false
 					_player_died()
 									
-				else:
+				if invincible:
 					print("Lost invincibility")
+					vero = true
 					invincible = false
+				else:
+					vero = false
 					
 		else:
 			if ray:

@@ -1,6 +1,7 @@
 extends Node2D
 var rocket_resource = preload("res://Scenes/Obstacle2_Rocket.tscn")
 var meteor_resource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
+var coin_ressource = preload("res://Scenes/PowerUp.tscn")
 var timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 export (float) var wait_time = 0.1
@@ -23,11 +24,13 @@ func _start_timer():
 func do_this():
 	var rocket = meteor_resource.instance()
 	rng.randomize()
-	var m = rng.randi_range(1,2)
-	if m == 1:
+	var m = rng.randi_range(1,10)
+	if m == 1 or m == 2 or m == 3 or m ==4:
 		rocket = rocket_resource.instance()
-	if m == 2:
+	if m == 5 or m == 6 or m == 7 or m ==8 or m ==9:
 		rocket = meteor_resource.instance()
+	if m == 10:
+		rocket = coin_ressource.instance()
 	rng.randomize()
 	var new_position_x = rng.randf_range(-500.0, 800.0)
 	var new_position_y = rng.randf_range(Game.limit_bottom,Game.limit_top)
