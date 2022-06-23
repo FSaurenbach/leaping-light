@@ -6,7 +6,7 @@
 extents = Vector2( 8, 13.5 )
 
 [node name="Obstacle_Meteor_1" type="KinematicBody2D"]
-scale = Vector2( 3, 3 )
+scale = Vector2( 5, 5 )
 
 [node name="MeteorSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

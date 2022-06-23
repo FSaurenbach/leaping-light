@@ -173,6 +173,7 @@ theme = ExtResource( 3 )
 text = "SKINS"
 
 [node name="SpecialOffer" type="Node2D" parent="."]
+position = Vector2( 32, 0 )
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="SpecialOffer"]
 anchor_left = 0.5

@@ -1,9 +1,12 @@
 extends KinematicBody2D
-
+var old_pos
 var clicked = false
 var invincible = false
 var vero = false
+var old_score = Game.score
 func _ready():
+	
+	old_pos = position
 	if Game.skin == "white":
 		$Light.set_texture(Game.light_white)
 	if Game.skin == "blue":
@@ -37,7 +40,7 @@ func _physics_process(delta):
 		
 		# Check if ray hits anything
 		if ray:
-			# Give player invincibility tag when coin is collected
+				# Give player invincibility tag when coin is collected
 			if "PowerUp" in str(ray.collider):
 				print("Ba-ding!")
 				invincible = true
@@ -61,6 +64,13 @@ func _physics_process(delta):
 					print_debug(ray.collider)
 		var diff = new_pos -position
 		
+		Game.score -= diff[1]
+		if Game.score > old_score +500:
+			Game.scrolling_speed += 5
+			print("gas gas gas")
+			old_score = Game.score
+		
+		get_parent().get_node("Control/Header").text = "Score: %s" % Game.score
 		$Camera2D.limit_bottom += diff[1]*0.65
 		if position[1] >= $Camera2D.limit_bottom:
 			get_tree().change_scene("res://Scenes/GameOver.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Scripts/ParallaxBackground.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Revive.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Generator.gd" type="Script" id=9]
+[ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 10 )
 
 [node name="Game" type="Node2D"]
 
@@ -24,6 +29,16 @@ normal_map = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 331, -19 )
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = -90000
+limit_right = 720
+limit_bottom = 500
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 1.0
 
 [node name="ScrollingBackground" type="Node2D" parent="."]
 position = Vector2( 331, 739 )
@@ -53,3 +68,20 @@ margin_bottom = 0.0
 stream = ExtResource( 5 )
 volume_db = 1.0
 autoplay = true
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Header" type="Label" parent="Control"]
+anchor_top = 0.049
+anchor_right = 0.889
+anchor_bottom = 0.049
+margin_left = -92.0
+margin_top = -521.96
+margin_right = 395.0
+margin_bottom = -396.96
+rect_pivot_offset = Vector2( 1194, 844 )
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+align = 1
