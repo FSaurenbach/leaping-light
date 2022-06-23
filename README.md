@@ -1,12 +1,11 @@
-# leaping-light
-A light lost Space...
+# Leaping Light
+A light lost in the vastness of space...
 
-Try to dodge everything that stands in you way, and survive as long as you can !
+Try to dodge everything that stands in you way, and survive as long as you can!
 
 -----------------------------------------
 
-Still in development
+Still in development | WIP
 
-Release date:    unknown
-
-Available on:   Google Play
+Release date: 20.07.22
+Available on: Google Play
