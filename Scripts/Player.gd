@@ -11,6 +11,8 @@ func _ready():
 		$Light.set_texture(Game.light_white)
 	if Game.skin == "blue":
 		$Light.set_texture(Game.light_blue)
+	if Game.skin == "red":
+		$Light.set_texture(Game.light_red)
 	
 	Game.playable = true
 	
