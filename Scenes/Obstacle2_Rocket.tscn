@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Textures/Obstacle2_Rocket.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Obstacle.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rocket_Blink"
@@ -20,6 +21,7 @@ tracks/0/keys = {
 }
 
 [node name="Obstacle2_Rocket" type="KinematicBody2D"]
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Rocket_Blink"

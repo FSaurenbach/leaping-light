@@ -63,7 +63,7 @@ func _physics_process(delta):
 				if !("Scrolling" in str(ray.collider)):
 					print_debug(ray.collider)
 		var diff = new_pos -position
-		
+		print(position)
 		Game.score -= diff[1]
 		if Game.score > old_score +500:
 			Game.scrolling_speed += 5
