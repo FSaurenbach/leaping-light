@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Textures/light_blue.png" type="Texture" id=5]
 [ext_resource path="res://Textures/nightskycolor.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/ShopBackground.gd" type="Script" id=7]
+[ext_resource path="res://Textures/light_red.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=3]
 size = 90
@@ -137,7 +138,7 @@ text = "Red"
 [node name="Light" type="Sprite" parent="Skins/VBoxContainer2/RedPlayer"]
 position = Vector2( 139, 154 )
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 5 )
+texture = ExtResource( 8 )
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Skins/VBoxContainer2/RedPlayer"]
 anchor_left = 0.5
@@ -190,4 +191,4 @@ text = "Special offer"
 
 [connection signal="button_up" from="BackButton" to="." method="_on_BackButton_button_up"]
 [connection signal="button_up" from="Skins/VBoxContainer2/BluePlayer" to="." method="_on_BluePlayer_button_up"]
-[connection signal="button_up" from="Skins/VBoxContainer2/RedPlayer" to="." method="_on_BluePlayer_button_up"]
+[connection signal="button_up" from="Skins/VBoxContainer2/RedPlayer" to="." method="_on_RedPlayer_button_up"]
