@@ -1,6 +1,7 @@
 extends Node2D
 var met_ressource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
 var rocket_resource = preload("res://Scenes/Obstacle2_Rocket.tscn")
+var ufo_resource = preload("res://Scenes/UFO_Obstacle_.tscn")
 var meteor_resource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
 var coin_ressource = preload("res://Scenes/PowerUp.tscn")
 var timer = Timer.new()
@@ -26,17 +27,20 @@ func do_this():
 	var rocket = meteor_resource.instance()
 	rng.randomize()
 	var m = rng.randi_range(1,10)
-	if m == 1 or m == 2 or m == 3 :
+	if m == 1 or m == 2:
 		rocket = rocket_resource.instance()
-	if m == 5 or m == 6 or m == 7 or m ==8:
+	if m == 5 or m == 6:
 		rocket = meteor_resource.instance()
+	
+	if m == 3 or m == 7:
+		rocket = ufo_resource.instance()
 	if m==9 or m ==4:
 		rocket = met_ressource.instance()
 	if m == 10:
 		rocket = coin_ressource.instance()
 	rng.randomize()
 	var new_position_x = rng.randf_range(-500.0, 800.0)
-	print(Game.limit_top)
+
 	var new_position_y = rng.randf_range(Game.limit_top-6200,Game.limit_top-2000)
 	rocket.set_position(Vector2(new_position_x,new_position_y)) # use set_translation() if you are in 3D
 	rocket.set_name("rocket "+ str(i))

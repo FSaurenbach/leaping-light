@@ -6,7 +6,7 @@
 radius = 33.9327
 height = 507.272
 
-[node name="Obstacle1_Meteor1" type="KinematicBody2D"]
+[node name="Obstacle1_Meteor1" type="KinematicBody2D" groups=["obstacle"]]
 
 [node name="MeteorSprite" type="Sprite" parent="."]
 scale = Vector2( 0.471628, 0.624011 )

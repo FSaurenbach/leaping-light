@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Scripts/Generator.gd" type="Script" id=9]
 [ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Scenes/Obstacle_Meteor_1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/UFO_Obstacle_.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Tp_sound.ogg" type="AudioStream" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -64,7 +66,7 @@ position = Vector2( 161, -1278 )
 position = Vector2( 323, -635 )
 
 [node name="Obstacle2_Rocket3" parent="ScrollingBackground" instance=ExtResource( 3 )]
-position = Vector2( -331, -2342 )
+position = Vector2( 324, -1665 )
 
 [node name="PowerUp3" parent="ScrollingBackground" instance=ExtResource( 1 )]
 position = Vector2( -325, -2093 )
@@ -92,6 +94,21 @@ position = Vector2( 244, -3384 )
 
 [node name="Obstacle_Meteor_4" parent="ScrollingBackground" instance=ExtResource( 11 )]
 position = Vector2( -423, -2934 )
+
+[node name="Obstacle_UFO_1" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( 407, -1829 )
+
+[node name="Obstacle_UFO_2" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( -22, -635 )
+
+[node name="Obstacle_UFO_3" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( 407, -1020 )
+
+[node name="Obstacle_UFO_4" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( 164, -2444 )
+
+[node name="Obstacle_UFO_5" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( -8.00003, -1909 )
 
 [node name="Revive" parent="." instance=ExtResource( 8 )]
 visible = false
@@ -126,3 +143,8 @@ rect_pivot_offset = Vector2( 1194, 844 )
 custom_fonts/font = SubResource( 1 )
 text = "Score:"
 align = 1
+
+[node name="TP_SOUND" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[connection signal="finished" from="TP_SOUND" to="Player" method="_on_TP_SOUND_finished"]

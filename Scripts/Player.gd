@@ -44,32 +44,24 @@ func _physics_process(delta):
 		if ray:
 				# Give player invincibility tag when coin is collected
 			if "PowerUp" in str(ray.collider):
-				print("Ba-ding!")
 				invincible = true
 			# Check for invincibility when hit by obstacle
 			if (("Obstacle" in str(ray.collider)) ||("rocket" in str(ray.collider)) ) :
 				if !invincible and vero ==false: 
-					print("Game over!")
 					clicked = false
 					_player_died()
 									
 				if invincible:
-					print("Lost invincibility")
 					vero = true
 					invincible = false
 				else:
 					vero = false
 					
-		else:
-			if ray:
-				if !("Scrolling" in str(ray.collider)):
-					print_debug(ray.collider)
+	
 		var diff = new_pos -position
-		print(position)
 		Game.score -= diff[1]
 		if Game.score > old_score +500:
 			Game.scrolling_speed += 5
-			print("gas gas gas")
 			old_score = Game.score
 		
 		get_parent().get_node("Control/Header").text = "Score: %s" % Game.score
@@ -78,6 +70,7 @@ func _physics_process(delta):
 			get_tree().change_scene("res://Scenes/GameOver.tscn")
 		# Move Player to clicked position
 		position = new_pos
+		get_parent().get_node("TP_SOUND").play()
 		clicked = false
 func _player_died():
 	Game.playable = false
@@ -86,3 +79,13 @@ func _player_died():
 	get_parent().get_node("Revive").show()
 	get_parent().get_node("Revive/Camera2D").current = true
 	get_parent().get_node("Revive/AnimationPlayer").play("heart")
+
+
+func _on_TP_SOUND_finished():
+	print("lol")
+	get_parent().get_node("TP_SOUND").audio.stream_paused = true
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_parent().is_in_group("obstacle"):
+		_player_died()

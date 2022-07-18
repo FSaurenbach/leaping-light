@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 7, 3, 5, 4, 3, 2, 1, 0 ]
 }
 
-[node name="Obstacle2_Rocket" type="KinematicBody2D"]
+[node name="Obstacle2_Rocket" type="KinematicBody2D" groups=["obstacle"]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -36,5 +36,11 @@ vframes = 3
 frame = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -110, 49, -48, 16, -48, -112, -1, -159, 47, -72, 48, 16, 111, 53, 95, 79, 48, 79, 48, 144, 0, 144, 0, 160, -32, 160, -64, 113, -32, 113, -32, 96, -112, 63 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -110, 49, -48, 16, -48, -112, -1, -159, 47, -72, 48, 16, 111, 53, 95, 79, 48, 79, 48, 144, 0, 144, 0, 160, -32, 160, -64, 113, -32, 113, -32, 96, -112, 63 )
