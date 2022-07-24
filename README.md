@@ -7,5 +7,5 @@ Try to dodge everything that stands in you way, and survive as long as you can!
 
 Still in development | WIP
 
-Release date: 20.07.22
+Release date: end of August
 Available on: Google Play
