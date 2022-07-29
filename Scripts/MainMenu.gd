@@ -1,6 +1,6 @@
 extends Node
 func _ready():
-	pass
+	print(Game.read_savegame())
 
 
 func _on_StartButton_pressed():

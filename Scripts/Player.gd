@@ -4,6 +4,7 @@ var clicked = false
 var invincible = false
 var vero = false
 var old_score = Game.score
+
 func _ready():
 	
 	old_pos = position
@@ -22,7 +23,7 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
-	
+
 func _process(delta):
 	var limit_bottom = $Camera2D.limit_bottom
 	Game.limit_bottom = limit_bottom
@@ -51,7 +52,10 @@ func _physics_process(delta):
 				if !invincible and vero ==false: 
 					print("Game over!")
 					clicked = false
-					_player_died()
+					Game.save(Game.score)
+					print(Game.read_savegame())
+					get_tree().change_scene("res://Scenes/Game.tscn")
+					#_player_died()
 									
 				if invincible:
 					print("Lost invincibility")
@@ -75,6 +79,8 @@ func _physics_process(delta):
 		get_parent().get_node("Control/Header").text = "Score: %s" % Game.score
 		$Camera2D.limit_bottom += diff[1]*0.65
 		if position[1] >= $Camera2D.limit_bottom:
+			Game.save(Game.score)
+			print(Game.read_savegame())
 			get_tree().change_scene("res://Scenes/GameOver.tscn")
 		# Move Player to clicked position
 		position = new_pos
@@ -86,3 +92,15 @@ func _player_died():
 	get_parent().get_node("Revive").show()
 	get_parent().get_node("Revive/Camera2D").current = true
 	get_parent().get_node("Revive/AnimationPlayer").play("heart")
+<<<<<<< Updated upstream
+=======
+
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_parent().is_in_group("obstacle"):
+		Game.save(Game.score)
+		print(Game.read_savegame())
+		get_tree().change_scene("res://Scenes/GameOver.tscn")
+		#_player_died()
+>>>>>>> Stashed changes
