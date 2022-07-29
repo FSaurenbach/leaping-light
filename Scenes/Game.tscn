@@ -52,25 +52,14 @@ position = Vector2( -168, -892 )
 [node name="PowerUp" parent="ScrollingBackground" instance=ExtResource( 1 )]
 position = Vector2( -162, -643 )
 
-[node name="Obstacle1_Meteor1" parent="ScrollingBackground" instance=ExtResource( 4 )]
-
-[node name="Obstacle2_Rocket2" parent="ScrollingBackground" instance=ExtResource( 3 )]
-position = Vector2( 155, -1527 )
-
 [node name="PowerUp2" parent="ScrollingBackground" instance=ExtResource( 1 )]
 position = Vector2( 161, -1278 )
-
-[node name="Obstacle1_Meteor2" parent="ScrollingBackground" instance=ExtResource( 4 )]
-position = Vector2( 323, -635 )
 
 [node name="Obstacle2_Rocket3" parent="ScrollingBackground" instance=ExtResource( 3 )]
 position = Vector2( -331, -2342 )
 
 [node name="PowerUp3" parent="ScrollingBackground" instance=ExtResource( 1 )]
 position = Vector2( -325, -2093 )
-
-[node name="Obstacle1_Meteor3" parent="ScrollingBackground" instance=ExtResource( 4 )]
-position = Vector2( -163, -1450 )
 
 [node name="Obstacle2_Rocket4" parent="ScrollingBackground" instance=ExtResource( 3 )]
 position = Vector2( -8, -2977 )
@@ -81,18 +70,24 @@ position = Vector2( -2, -2728 )
 [node name="Obstacle1_Meteor4" parent="ScrollingBackground" instance=ExtResource( 4 )]
 position = Vector2( 160, -2085 )
 
-[node name="Obstacle_Meteor_1" parent="ScrollingBackground" instance=ExtResource( 11 )]
-position = Vector2( 525, -2259 )
-
 [node name="Obstacle_Meteor_2" parent="ScrollingBackground" instance=ExtResource( 11 )]
 position = Vector2( -136, -3464 )
-
-[node name="Obstacle_Meteor_3" parent="ScrollingBackground" instance=ExtResource( 11 )]
-position = Vector2( 244, -3384 )
 
 [node name="Obstacle_Meteor_4" parent="ScrollingBackground" instance=ExtResource( 11 )]
 position = Vector2( -423, -2934 )
 
+<<<<<<< Updated upstream
+=======
+[node name="Obstacle_UFO_2" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( -22, -635 )
+
+[node name="Obstacle_UFO_3" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( 407, -1020 )
+
+[node name="Obstacle_UFO_5" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( -8.00003, -1909 )
+
+>>>>>>> Stashed changes
 [node name="Revive" parent="." instance=ExtResource( 8 )]
 visible = false
 anchor_left = 0.0

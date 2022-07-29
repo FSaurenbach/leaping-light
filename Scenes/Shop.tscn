@@ -189,6 +189,16 @@ rect_scale = Vector2( 1.4, 1.4 )
 theme = ExtResource( 3 )
 text = "Special offer"
 
+[node name="Money" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 497.0
+margin_top = 2.0
+margin_right = 719.0
+margin_bottom = 58.0
+theme = ExtResource( 3 )
+text = "0 Coins"
+
 [connection signal="button_up" from="BackButton" to="." method="_on_BackButton_button_up"]
 [connection signal="button_up" from="Skins/VBoxContainer2/BluePlayer" to="." method="_on_BluePlayer_button_up"]
 [connection signal="button_up" from="Skins/VBoxContainer2/RedPlayer" to="." method="_on_RedPlayer_button_up"]

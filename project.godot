@@ -12,6 +12,7 @@ config_version=4
 
 config/name="Leaping Light"
 run/main_scene="res://Scenes/MainMenu.tscn"
+config/use_custom_user_dir=true
 boot_splash/image="res://Logo.png"
 boot_splash/bg_color=Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 config/icon="res://icon.png"
