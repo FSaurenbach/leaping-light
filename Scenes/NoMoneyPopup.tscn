@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/NoMoneyPopup.gd" type="Script" id=2]
+
+[node name="NoMoneyPopup" type="PopupDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -100.0
+margin_right = 240.0
+margin_bottom = 232.0
+script = ExtResource( 2 )
+
+[node name="Money" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -174.0
+margin_top = 20.0
+margin_right = 178.0
+margin_bottom = 300.0
+theme = ExtResource( 1 )
+text = "Insuffficent coin balance
+You need ? more"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 372.0
+margin_top = 4.0
+margin_right = 416.0
+margin_bottom = 48.0
+text = "X"
+
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

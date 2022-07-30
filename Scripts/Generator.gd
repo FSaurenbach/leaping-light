@@ -1,5 +1,6 @@
 extends Node2D
 var met_ressource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
+var ufo_ressource = preload("res://Scenes/Obstacle_UFO.tscn")
 var rocket_resource = preload("res://Scenes/Obstacle2_Rocket.tscn")
 var meteor_resource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
 var coin_ressource = preload("res://Scenes/PowerUp.tscn")
@@ -28,10 +29,12 @@ func do_this():
 	var m = rng.randi_range(1,10)
 	if m == 1 or m == 2 or m == 3 :
 		rocket = rocket_resource.instance()
-	if m == 5 or m == 6 or m == 7 or m ==8:
+	if m == 5 or m == 6 or m == 7:
 		rocket = meteor_resource.instance()
 	if m==9 or m ==4:
 		rocket = met_ressource.instance()
+	if m == 8:
+		rocket = ufo_ressource.instance()
 	if m == 10:
 		rocket = coin_ressource.instance()
 	rng.randomize()

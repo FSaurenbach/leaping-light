@@ -1,6 +1,4 @@
 extends Node
-func _ready():
-	print(Game.read_savegame())
 
 
 func _on_StartButton_pressed():
@@ -16,3 +14,7 @@ func _on_SettingsButton_pressed():
 
 func _on_ShopButton_button_up():
 	get_tree().change_scene("res://Scenes/Shop.tscn")
+
+
+func _on_SettingsButton_button_up():
+	get_tree().change_scene("res://Scenes/OptionsMenu.tscn")

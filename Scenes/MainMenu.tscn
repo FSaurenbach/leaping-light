@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Spiel_starten.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=3]
 size = 90
@@ -9,10 +10,6 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 50
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 27
 font_data = ExtResource( 2 )
 
 [sub_resource type="Environment" id=1]
@@ -79,10 +76,10 @@ __meta__ = {
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 margin_top = 146.0
 margin_right = 205.0
-margin_bottom = 186.0
-custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "OPTIONS"
+margin_bottom = 215.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 5 )
+text = "Options"
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,6 +108,11 @@ custom_fonts/font = SubResource( 3 )
 text = "Copyright(c) Maxed Vision 2022"
 align = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 4.0
+autoplay = true
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="button_up" from="VBoxContainer/ShopButton" to="." method="_on_ShopButton_button_up"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="button_up" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_button_up"]

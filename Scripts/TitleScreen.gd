@@ -1,9 +1,9 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _ready():
+	if Game.music == true:
+		$AudioStreamPlayer.play()
 func _process(delta):
 	$Money.text = str(Game.read_savegame())
 	
@@ -19,6 +19,8 @@ func _on_BluePlayer_button_up():
 	if Game.read_savegame() >= 5000:
 		Game.save(-5000)
 		Game.skin = "blue"
+	else:
+		no_money(5000-Game.read_savegame())
 	print(Game.read_savegame())
 
 func _on_BackButton_button_up():
@@ -31,8 +33,10 @@ func _on_RedPlayer_button_up():
 		Game.save(-5000)
 		Game.skin = "red"
 	else:
-		pass
+		
+		no_money(5000-Game.read_savegame())
 		
 	print(Game.read_savegame())
-func no_money():
-	pass
+func no_money(balance):
+	$NoMoneyPopup.get_child(0).text = "Insuffficent coin balance You need %s more" % str(balance)
+	$NoMoneyPopup.popup()
