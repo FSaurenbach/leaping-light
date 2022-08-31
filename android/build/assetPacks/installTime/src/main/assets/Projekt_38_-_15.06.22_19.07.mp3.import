@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Projekt_38_-_15.06.22_19.07.mp3-41ef871f638632b7d6c68272c5b4baaa.mp3str"
+
+[deps]
+
+source_file="res://Projekt_38_-_15.06.22_19.07.mp3"
+dest_files=[ "res://.import/Projekt_38_-_15.06.22_19.07.mp3-41ef871f638632b7d6c68272c5b4baaa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

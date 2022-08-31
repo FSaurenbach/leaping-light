@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Obstacle2_Rocket.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Obstacle1_Meteor1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Projekt_38_-_20.06.22_17.06.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Textures/nightskycolor.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ParallaxBackground.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Revive.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Generator.gd" type="Script" id=9]
+[ext_resource path="res://Quicksand-SemiBold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scenes/Obstacle_Meteor_1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Obstacle_UFO.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 10 )
+
+[node name="Game" type="Node2D"]
+
+[node name="Space 01" type="ParallaxBackground" parent="."]
+script = ExtResource( 7 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Space 01"]
+motion_mirroring = Vector2( 2048, 2048 )
+
+[node name="Sprite" type="Sprite" parent="Space 01/ParallaxLayer"]
+texture = ExtResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 331, -19 )
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = -90000
+limit_right = 720
+limit_bottom = 500
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 1.0
+
+[node name="ScrollingBackground" type="Node2D" parent="."]
+position = Vector2( 331, 739 )
+script = ExtResource( 9 )
+wait_time = 0.3
+
+[node name="Obstacle2_Rocket" parent="ScrollingBackground" instance=ExtResource( 3 )]
+position = Vector2( -168, -892 )
+
+[node name="PowerUp" parent="ScrollingBackground" instance=ExtResource( 1 )]
+position = Vector2( -162, -643 )
+
+[node name="PowerUp2" parent="ScrollingBackground" instance=ExtResource( 1 )]
+position = Vector2( 161, -1278 )
+
+[node name="Obstacle2_Rocket3" parent="ScrollingBackground" instance=ExtResource( 3 )]
+position = Vector2( -331, -2342 )
+
+[node name="PowerUp3" parent="ScrollingBackground" instance=ExtResource( 1 )]
+position = Vector2( -325, -2093 )
+
+[node name="Obstacle_Meteor_1" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( -210, -1026 )
+
+[node name="Obstacle_Meteor_3" parent="ScrollingBackground" instance=ExtResource( 12 )]
+position = Vector2( 120, -1426 )
+
+[node name="Obstacle2_Rocket4" parent="ScrollingBackground" instance=ExtResource( 3 )]
+position = Vector2( -8, -2977 )
+
+[node name="PowerUp4" parent="ScrollingBackground" instance=ExtResource( 1 )]
+position = Vector2( -2, -2728 )
+
+[node name="Obstacle1_Meteor4" parent="ScrollingBackground" instance=ExtResource( 4 )]
+position = Vector2( 160, -2085 )
+
+[node name="Obstacle_Meteor_2" parent="ScrollingBackground" instance=ExtResource( 11 )]
+position = Vector2( -136, -3464 )
+
+[node name="Obstacle_Meteor_4" parent="ScrollingBackground" instance=ExtResource( 11 )]
+position = Vector2( -423, -2934 )
+
+[node name="Revive" parent="." instance=ExtResource( 8 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 1.0
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Header" type="Label" parent="Control"]
+anchor_top = 0.049
+anchor_right = 0.889
+anchor_bottom = 0.049
+margin_left = -92.0
+margin_top = -521.96
+margin_right = 395.0
+margin_bottom = -396.96
+rect_pivot_offset = Vector2( 1194, 844 )
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+align = 1
