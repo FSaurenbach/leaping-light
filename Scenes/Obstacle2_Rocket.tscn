@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 7, 3, 5, 4, 3, 2, 1, 0 ]
 }
 
-[node name="Obstacle2_Rocket" type="KinematicBody2D"]
+[node name="Obstacle2_Rocket" type="KinematicBody2D" groups=["obstacle"]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

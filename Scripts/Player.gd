@@ -23,7 +23,6 @@ func _input(_event):
 	if Input.is_action_just_released("light_leap") and Game.playable:
 		clicked = true
 	if Input.is_action_just_pressed("escape"):
-# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Scenes/GameOver.tscn")
 		Game.save(Game.score)
 	
@@ -36,8 +35,6 @@ func _process(_delta):
 func _physics_process(_delta):
 
 	
-	
-	
 	if clicked and Game.playable:
 		# Save new position
 		var new_pos = get_parent().get_global_mouse_position()
@@ -48,46 +45,43 @@ func _physics_process(_delta):
 		# Check if ray hits anything
 		if ray:
 				# Give player invincibility tag when coin is collected
-			if "PowerUp" in str(ray.collider):
-				print("Ba-ding!")
+			if ray.collider.is_in_group("coin"):
+				
 				invincible = true
 			# Check for invincibility when hit by obstacle
-			if (("Obstacle" in str(ray.collider)) ||("rocket" in str(ray.collider)) ) :
-				if !invincible and vero ==false: 
-					print("Game over!")
+			if (ray.collider.is_in_group("obstacle")):
+				if !invincible and vero ==false:
 					clicked = false
 					Game.save(Game.score)
-					print(Game.read_savegame())
 					#get_tree().change_scene("res://Scenes/GameOver.tscn")
 					_player_died()
 									
 				if invincible:
-					print("Lost invincibility")
+				
 					vero = true
 					invincible = false
 				else:
 					vero = false
 
 		var diff = new_pos -position
-		print(position)
-		Game.score -= diff[1]
+		Game.score -= diff[1]/100.0
 		if Game.score > old_score +500:
 			Game.scrolling_speed += 5
 			old_score = Game.score
 		
-		get_parent().get_node("Control/Header").text = "Score: %s" % Game.score
+		get_parent().get_node("CanvasLayer/Control/Header").text = "Score: %s" % Game.score
 		$Camera2D.limit_bottom += diff[1]*0.65
-		if position[1] >= $Camera2D.limit_bottom:
-			_player_died()
-			#get_tree().change_scene("res://Scenes/GameOver.tscn")
-			Game.save(Game.score)
-			print(Game.read_savegame())
+	
 			
 		# Move Player to clicked position
 		position = new_pos
 		if Game.sound == true:
 			$AudioStreamPlayer.play()
 		clicked = false
+	if position[1] >= $Camera2D.limit_bottom:
+		_player_died()
+		#get_tree().change_scene("res://Scenes/GameOver.tscn")
+		Game.save(Game.score)
 func _player_died():
 	Game.playable = false
 	get_parent().get_parent().pause_mode = Node.PAUSE_MODE_STOP
@@ -105,6 +99,5 @@ func _on_Area2D_area_entered(area):
 		
 		Game.save(Game.score)
 		area.get_parent().queue_free()
-		print(Game.read_savegame())
 		#get_tree().change_scene("res://Scenes/GameOver.tscn")
 		_player_died()

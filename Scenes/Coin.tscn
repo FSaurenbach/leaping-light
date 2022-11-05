@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 86.093
 
-[node name="Coin" type="KinematicBody2D"]
+[node name="Coin" type="KinematicBody2D" groups=["coin"]]
 script = ExtResource( 2 )
 
 [node name="CoinCollisionShape" type="CollisionShape2D" parent="."]

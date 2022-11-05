@@ -8,7 +8,6 @@
 
 config_version=4
 
-
 [application]
 
 config/name="Leaping Light"
@@ -25,10 +24,12 @@ Game="*res://Scripts/GameVars.gd"
 [display]
 
 window/size/width=720
-window/size/height=1024
+window/size/height=1080
 window/size/resizable=false
+window/size/borderless=true
+window/size/fullscreen=true
 window/handheld/orientation="portrait"
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [gdnative]

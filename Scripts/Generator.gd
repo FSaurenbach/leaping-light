@@ -3,7 +3,7 @@ var met_ressource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
 var ufo_ressource = preload("res://Scenes/Obstacle_UFO.tscn")
 var rocket_resource = preload("res://Scenes/Obstacle2_Rocket.tscn")
 var meteor_resource = preload("res://Scenes/Obstacle_Meteor_1.tscn")
-var coin_ressource = preload("res://Scenes/PowerUp.tscn")
+var coin_ressource = preload("res://Scenes/Coin.tscn")
 var timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 export (float) var wait_time = 0.1
@@ -18,10 +18,7 @@ func _ready():
 	_start_timer()
 func _start_timer():
 	timer.start()
-	
 	return
-	#rocket.set_pos(100.0,100.0) # use set_translation() if you are in 3D
-	#add_child(rocket) # parent could be whatever node in the scene that you want the car to be child of
 	
 func do_this():
 	var rocket = meteor_resource.instance()
@@ -39,7 +36,6 @@ func do_this():
 		rocket = coin_ressource.instance()
 	rng.randomize()
 	var new_position_x = rng.randf_range(-500.0, 800.0)
-	print(Game.limit_top)
 	var new_position_y = rng.randf_range(Game.limit_top-6200,Game.limit_top-2000)
 	rocket.set_position(Vector2(new_position_x,new_position_y)) # use set_translation() if you are in 3D
 	rocket.set_name("rocket "+ str(i))

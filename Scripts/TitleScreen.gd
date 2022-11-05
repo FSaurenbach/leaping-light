@@ -4,10 +4,10 @@ extends Node
 func _ready():
 	if Game.music == true:
 		$AudioStreamPlayer.play()
-func _process(delta):
+func _process(_delta):
 	$Money.text = str(Game.read_savegame())
 	
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 

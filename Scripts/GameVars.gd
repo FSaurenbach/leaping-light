@@ -18,7 +18,7 @@ func _ready():
 		savegame.open(save_path, File.WRITE)
 		savegame.store_var(save_data)
 		savegame.close()
-func save(high_score = null, skin = null):    
+func save(high_score = null):    
 	
    save_data["highscore"] += high_score #data to save
    savegame.open(save_path, File.WRITE) #open file to write
